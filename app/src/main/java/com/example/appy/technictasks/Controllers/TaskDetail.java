@@ -67,7 +67,7 @@ public class TaskDetail extends FragmentActivity implements OnMapReadyCallback {
         machine_name.setText(task.getMachineCaracteristics());
         problem_text.setText(task.getProblem());
         task_date.setText(task.getDate());
-        // comment_text.setText(task.getComment());
+        comment_text.setText(task.getComment());
         time_spend_text.setText(task.getTime_spend());
 
         // Change color of imageViews

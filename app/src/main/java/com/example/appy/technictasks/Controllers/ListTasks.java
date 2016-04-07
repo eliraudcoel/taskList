@@ -87,4 +87,9 @@ public class ListTasks extends AppCompatActivity {
         Intent intent = new Intent(ListTasks.this, MainActivity.class);
         startActivity(intent);
     }
+
+    // Not go back on main activity !!!
+    public void onBackPressed(){
+        // do something here and don't write super.onBackPressed()
+    }
 }

@@ -25,19 +25,15 @@ public class MainActivity extends AppCompatActivity {
     public User current_user = null;
     public static DB base;
     SharedPreferences pref;
-    String current_token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         pref = getSharedPreferences("session", Activity.MODE_PRIVATE);
-        current_token = pref.getString("UserToken", null);
 
-        if(current_token != null) {
+        if(getCurrentToken() != null) {
             current_user = getCurrentUser();
-            if (current_user != null) {
-                goToList();
-            }
+            if (current_user != null) { goToList(); }
         }
 
         setContentView(R.layout.activity_main);
@@ -58,15 +54,15 @@ public class MainActivity extends AppCompatActivity {
        current_user = getCurrentUser();
 
         if(current_user != null) {
-            pref.edit().putString("UserToken", token()).commit();
+            setToken();
 
             base = new DB(this);
             base.open();
             base.updateUser(current_user.getId(), current_user);
             base.close();
+
             return true;
         } else {
-            pref.edit().remove("UserToken").commit();
             return false;
         }
     }
@@ -76,18 +72,46 @@ public class MainActivity extends AppCompatActivity {
         base.open();
         User user;
 
-        if(current_token != null) {
-            user = base.getUserByToken(current_token);
+        if(getCurrentToken() != null) {
+            user = base.getUserByToken(getCurrentToken());
         } else {
-             user = base.getUserByLogin(login.getText().toString(), pwd.getText().toString());
-            // User user = base.getUserByLogin("paul", "test"); // uniquement test
+            user = base.getUserByLogin(login.getText().toString(), pwd.getText().toString());
         }
 
         base.close();
         return user;
     }
 
-    private String token() {
+    private void logIn() {
+        if(getCurrentToken() != null) { removeToken(); } // avant tout on degomme le token stocké
+
+        if (checkIdentifiant() == true) {
+            goToList();
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(), "Votre login ou mot de passe est faux.", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+
+    private void goToList() {
+        Intent intent = new Intent(MainActivity.this, ListTasks.class);
+        intent.putExtra("current_user_id", current_user.getId());
+        startActivity(intent);
+    }
+
+    private String getCurrentToken() {
+        return pref.getString("UserToken", null);
+    }
+
+    private void removeToken() {
+        pref.edit().remove("UserToken").commit();
+    }
+
+    private void setToken() {
+        pref.edit().putString("UserToken", getNewToken()).commit();
+    }
+
+    private String getNewToken() {
         String token = "";
         Random rand = new Random();
         int numLetters = 10;
@@ -102,20 +126,5 @@ public class MainActivity extends AppCompatActivity {
         token += current_user.getLogin();
 
         return token;
-    }
-
-    private void logIn() {
-        if (checkIdentifiant() == true) {
-            goToList();
-        } else {
-            Toast toast = Toast.makeText(getApplicationContext(), "Votre login ou mot de passe est faux.", Toast.LENGTH_LONG);
-            toast.show();
-        }
-    }
-
-    private void goToList() {
-        Intent intent = new Intent(MainActivity.this, ListTasks.class);
-        intent.putExtra("current_user_id", current_user.getId()); // à vérifier => serializable
-        startActivity(intent);
     }
 }
