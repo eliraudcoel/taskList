@@ -176,6 +176,7 @@ public class DB {
         task.setDate(c.getString(6));
         task.setTerminated(c.getString(7));
         task.setTime_spend(c.getString(8));
+        task.setComment(c.getString(9));
 
         if(position==(c.getCount()-1)){
             c.close();

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.appy.technictasks.BDD.DB;
@@ -18,7 +19,8 @@ import com.example.appy.technictasks.R;
 public class EditTask extends AppCompatActivity {
 
     private Task task;
-    TextView spendTime, comment, dateNewRdv;
+    TextView spendTime, comment, dateNewRdv, descriptionNewRdv;
+    RelativeLayout newTask;
     CheckBox terminated, newRdv;
 
     @Override
@@ -33,10 +35,28 @@ public class EditTask extends AppCompatActivity {
 
         spendTime = (TextView) findViewById(R.id.spend_time);
         comment = (TextView) findViewById(R.id.comment);
-        dateNewRdv = (TextView) findViewById(R.id.date_new_rdv);
         terminated = (CheckBox) findViewById(R.id.terminated);
-        newRdv = (CheckBox) findViewById(R.id.new_rdv);
 
+
+        dateNewRdv = (TextView) findViewById(R.id.date_new_rdv);
+        descriptionNewRdv = (TextView) findViewById(R.id.description_new_rdv);
+
+        newTask = (RelativeLayout) findViewById(R.id.NewTask);
+        newRdv = (CheckBox) findViewById(R.id.new_rdv);
+        newRdv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(newRdv.isChecked()) {
+                    newTask.setVisibility(View.VISIBLE);
+                } else {
+                    removeInformation();
+                    newTask.setVisibility(View.GONE);
+                }
+            }
+        });
+
+
+        // button
         Button validButton = (Button) findViewById(R.id.valid_btn);
         validButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,5 +76,10 @@ public class EditTask extends AppCompatActivity {
                 startActivity(taskIntent);
             }
         });
+    }
+
+    private void removeInformation() {
+        dateNewRdv.setText(null);
+        descriptionNewRdv.setText(null);
     }
 }

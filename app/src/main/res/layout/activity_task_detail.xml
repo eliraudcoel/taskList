@@ -23,7 +23,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true">
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp">
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -151,13 +152,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Machine Bosh"
-            android:id="@+id/machine_name"
-            android:layout_marginLeft="23dp"
+            android:text="Caractéristiques"
+            android:id="@+id/machine_title"
+            android:layout_marginLeft="20dp"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/pb_img"
             android:layout_toEndOf="@+id/pb_img"
             android:layout_marginBottom="7dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Machine Bosh"
+            android:id="@+id/machine_name"
+            android:layout_alignLeft="@+id/machine_title"
+            android:layout_alignStart="@+id/machine_title"
+            android:layout_below="@+id/machine_title" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -169,10 +179,10 @@
             android:layout_alignParentRight="false"
             android:layout_alignParentEnd="true"
             android:layout_toEndOf="@+id/pb_img"
-            android:layout_alignLeft="@+id/machine_name"
+            android:layout_alignLeft="@+id/machine_title"
             android:layout_alignStart="@+id/machine_name"
-            android:layout_below="@+id/machine_name"
-            android:layout_marginTop="7dp" />
+            android:layout_marginTop="7dp"
+            android:layout_below="@+id/machine_name" />
 
     </RelativeLayout>
 
@@ -184,7 +194,7 @@
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:id="@+id/infos"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_below="@+id/problem"
         android:padding="5dp"
         android:layout_alignParentBottom="false"
@@ -211,7 +221,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Commentaires"
             android:id="@+id/infos_title"
-            android:layout_marginLeft="23dp"
+            android:layout_marginLeft="20dp"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/infos_img"
             android:layout_toEndOf="@+id/infos_img"
@@ -226,18 +236,30 @@
             android:layout_centerVertical="true"
             android:layout_alignLeft="@+id/infos_title"
             android:layout_alignStart="@+id/infos_title"
-            android:layout_below="@+id/infos_title" />
+            android:layout_below="@+id/infos_title"
+            android:layout_marginTop="7dp" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/spend_time_label"
+            android:layout_below="@+id/comment_text"
+            android:layout_alignLeft="@+id/comment_text"
+            android:text="Temps passé :" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="2h 30m"
             android:id="@+id/spend_time_text"
             android:textAlignment="textStart"
             android:gravity="center_vertical"
-            android:layout_alignLeft="@+id/infos_title"
-            android:layout_below="@+id/comment_text" />
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/spend_time_label"
+            android:layout_toEndOf="@+id/spend_time_label"
+            android:layout_toRightOf="@+id/spend_time_label"
+            android:layout_marginLeft="20dp" />
 
     </RelativeLayout>
 
