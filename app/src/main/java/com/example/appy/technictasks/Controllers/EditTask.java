@@ -37,10 +37,10 @@ public class EditTask extends AppCompatActivity {
         comment = (TextView) findViewById(R.id.comment);
         terminated = (CheckBox) findViewById(R.id.terminated);
 
-
         dateNewRdv = (TextView) findViewById(R.id.date_new_rdv);
         descriptionNewRdv = (TextView) findViewById(R.id.description_new_rdv);
 
+        // Display newTask form only if selected
         newTask = (RelativeLayout) findViewById(R.id.NewTask);
         newRdv = (CheckBox) findViewById(R.id.new_rdv);
         newRdv.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +68,13 @@ public class EditTask extends AppCompatActivity {
 
                 DB base = new DB(getBaseContext());
                 base.open();
+
                 base.updateTask(task.getId(), task);
+
+                if(newRdv.isChecked()) {
+                    base.insertTask(createNewTask());
+                }
+
                 base.close();
 
                 Intent taskIntent = new Intent(EditTask.this, ListTasks.class);
@@ -81,5 +87,9 @@ public class EditTask extends AppCompatActivity {
     private void removeInformation() {
         dateNewRdv.setText(null);
         descriptionNewRdv.setText(null);
+    }
+
+    private Task createNewTask() {
+        return new Task(task.getCustomer(), dateNewRdv.getText().toString(), task.getMachine_type(), task.getMachine_brand(), descriptionNewRdv.getText().toString(), task.getUser());
     }
 }

@@ -122,6 +122,21 @@ public class DB {
         return bdd.update("TASK", values, "ID_TASK = " + id, null);
     }
 
+    public long insertTask(Task task){
+        ContentValues values = new ContentValues();
+        values.put("USER_ID", task.getUser().getId());
+        values.put("CUSTOMER_ID", task.getCustomer().getId());
+        values.put("MACHINE_TYPE", task.getMachine_type());
+        values.put("MACHINE_BRAND", task.getMachine_brand());
+        values.put("PROBLEM", task.getProblem());
+        values.put("DATE", task.getDate());
+        values.put("TERMINATED", task.getTerminated());
+        values.put("TIME_SPEND", task.getTime_spend());
+        values.put("COMMENT", task.getComment());
+
+        return bdd.insert("TASK", null, values);
+    }
+
     public int updateUser(int id, User user){
         ContentValues values = new ContentValues();
         values.put("TOKEN", user.getToken());
@@ -161,7 +176,7 @@ public class DB {
         return customer;
     }
 
-    private Task cursorToTask(Cursor c,int position){
+    private Task cursorToTask(Cursor c, int position){
         if (c.getCount() == 0)
             return null;
 
