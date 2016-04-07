@@ -43,7 +43,7 @@ public class DB {
     }
 
     public User getUserByLogin(String login, String mdp){
-        Cursor c = bdd.query("USER", new String[] {"ID_USER", "LOGIN", "MDP", "EMAIL"}, " LOGIN ='"+login+"' AND MDP = '"+mdp+"'", null, null, null, null);
+        Cursor c = bdd.query("USER", new String[] {"ID_USER", "LOGIN", "MDP", "EMAIL", "TOKEN"}, " LOGIN ='"+login+"' AND MDP = '"+mdp+"'", null, null, null, null);
         if(c.getCount() > 0){
             return cursorToUser(c, 0);
         }else{
@@ -52,7 +52,7 @@ public class DB {
     }
 
     public User getUserById(Integer id){
-        Cursor c = bdd.query("USER", new String[] {"ID_USER", "LOGIN", "MDP", "EMAIL"}, " ID_USER =" + id, null, null, null, null);
+        Cursor c = bdd.query("USER", new String[] {"ID_USER", "LOGIN", "MDP", "EMAIL", "TOKEN"}, " ID_USER =" + id, null, null, null, null);
         if(c.getCount() > 0){
             return cursorToUser(c, 0);
         }else{
@@ -61,7 +61,7 @@ public class DB {
     }
 
     public User getUserByToken(String token){
-        Cursor c = bdd.query("USER", new String[] {"ID_USER", "LOGIN", "MDP", "EMAIL"}, " TOKEN =" + token, null, null, null, null);
+        Cursor c = bdd.query("USER", new String[] {"ID_USER", "LOGIN", "MDP", "EMAIL", "TOKEN"}, " TOKEN ='" + token + "'", null, null, null, null);
         if(c.getCount() > 0){
             return cursorToUser(c, 0);
         }else{
@@ -138,6 +138,7 @@ public class DB {
         user.setLogin(c.getString(1));
         user.setPassword(c.getString(2));
         user.setEmail(c.getString(3));
+        user.setToken(c.getString(4));
 
         if(position==(c.getCount()-1)){
             c.close();

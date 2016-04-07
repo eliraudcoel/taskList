@@ -59,8 +59,8 @@ public class ListTasks extends AppCompatActivity {
         log_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences pref = getPreferences(Activity.MODE_PRIVATE);
-                pref.edit().remove("Usertoken").commit();
+                SharedPreferences pref = getSharedPreferences("session", Activity.MODE_PRIVATE);
+                pref.edit().remove("UserToken").commit();
 
                 current_user.setToken(null);
                 base = new DB(getBaseContext());

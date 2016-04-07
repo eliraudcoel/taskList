@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -16,7 +14,6 @@ import com.example.appy.technictasks.BDD.DB;
 import com.example.appy.technictasks.Models.User;
 import com.example.appy.technictasks.R;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
@@ -33,12 +30,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        pref = getPreferences(Activity.MODE_PRIVATE);
+        pref = getSharedPreferences("session", Activity.MODE_PRIVATE);
         current_token = pref.getString("UserToken", null);
 
         if(current_token != null) {
             current_user = getCurrentUser();
-            goToList();
+            if (current_user != null) {
+                goToList();
+            }
         }
 
         setContentView(R.layout.activity_main);
@@ -59,15 +58,15 @@ public class MainActivity extends AppCompatActivity {
        current_user = getCurrentUser();
 
         if(current_user != null) {
+            pref.edit().putString("UserToken", token()).commit();
+
             base = new DB(this);
             base.open();
             base.updateUser(current_user.getId(), current_user);
             base.close();
-
-            pref.edit().putString("UserToken", token()).commit();
-
             return true;
         } else {
+            pref.edit().remove("UserToken").commit();
             return false;
         }
     }
@@ -94,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         int numLetters = 10;
         String randomLetters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-        String date_str = new SimpleDateFormat("yyyyMMdd").format(new Date());
+        String date_str = new SimpleDateFormat("yyyyMMddHHmm").format(new Date());
         token += date_str;
 
         for (int n=0; n<numLetters; n++) {
@@ -106,9 +105,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void logIn() {
-        if (checkIdentifiant() == true) { goToList(); }
-        else {
-            Toast toast = Toast.makeText(getApplicationContext(), "Votre login ou mot de passe est faux.", 10);
+        if (checkIdentifiant() == true) {
+            goToList();
+        } else {
+            Toast toast = Toast.makeText(getApplicationContext(), "Votre login ou mot de passe est faux.", Toast.LENGTH_LONG);
             toast.show();
         }
     }

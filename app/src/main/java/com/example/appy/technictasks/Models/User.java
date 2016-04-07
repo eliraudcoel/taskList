@@ -19,10 +19,11 @@ public class User {
     private String token;
     private ArrayList<Task> tasks;
 
-    public User(String login, String email, String password) {
+    public User(String login, String email, String password, String token) {
         this.login = login;
         this.email = email;
         this.password = password;
+        this.token = token;
     }
 
     public User(String login, String password) {
