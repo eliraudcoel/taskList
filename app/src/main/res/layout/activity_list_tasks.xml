@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Controllers.ListTasks">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <at.markushi.ui.CircleButton
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        app:cb_color="@color/colorPrimaryDark"
+        app:cb_pressedRingWidth="8dip"
+        android:layout_margin="10dp"
+        android:id="@+id/log_out" />
+</RelativeLayout>

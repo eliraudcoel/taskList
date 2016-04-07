@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Controllers.TaskDetail"
+    android:background="#FFF">
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:id="@+id/map"
+        tools:context=".Controllers.TaskDetail"
+        android:name="com.google.android.gms.maps.SupportMapFragment" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:id="@+id/contact"
+        android:layout_below="@+id/map"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/call_btn"
+            android:src="@android:drawable/ic_menu_call"
+            android:layout_marginLeft="28dp"
+            android:layout_marginStart="28dp"
+            android:background="#fff"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Coordonnées"
+            android:id="@+id/contact_title"
+            android:layout_alignStart="@+id/contact_task_name"
+            android:layout_marginBottom="7dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Madame Toto"
+            android:id="@+id/contact_task_name"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:layout_alignStart="@+id/contact_task_adress"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@+id/contact_title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="96 rue Lafayette 75010 Paris"
+            android:id="@+id/contact_task_adress"
+            android:textAlignment="textStart"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@+id/call_btn"
+            android:layout_toEndOf="@+id/call_btn"
+            android:layout_marginLeft="20dp"
+            android:layout_below="@+id/contact_task_name" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/date"
+        android:layout_below="@+id/contact"
+        android:padding="5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/date_img"
+            android:src="@android:drawable/ic_menu_today"
+            android:layout_marginLeft="28dp"
+            android:layout_marginStart="28dp"
+            android:background="#fff"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Date d'intervention"
+            android:id="@+id/date_title"
+            android:layout_toRightOf="@+id/date_img"
+            android:layout_toEndOf="@+id/date_img"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="7dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="29/01/2016 15:36"
+            android:id="@+id/task_date"
+            android:textAlignment="textStart"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@+id/date_img"
+            android:layout_toEndOf="@+id/date_img"
+            android:layout_marginLeft="20dp"
+            android:layout_below="@+id/date_title" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/problem"
+        android:padding="5dp"
+        android:visibility="visible"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_below="@+id/date"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentEnd="false"
+        android:layout_marginBottom="7dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pb_img"
+            android:src="@android:drawable/ic_menu_preferences"
+            android:layout_marginLeft="28dp"
+            android:layout_marginStart="28dp"
+            android:background="#fff"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Machine Bosh"
+            android:id="@+id/machine_name"
+            android:layout_marginLeft="23dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/pb_img"
+            android:layout_toEndOf="@+id/pb_img"
+            android:layout_marginBottom="7dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Problème de chasse d&apos;eau"
+            android:id="@+id/problem_text"
+            android:layout_alignParentBottom="false"
+            android:textAlignment="textStart"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/pb_img"
+            android:layout_alignLeft="@+id/machine_name"
+            android:layout_alignStart="@+id/machine_name"
+            android:layout_below="@+id/machine_name"
+            android:layout_marginTop="7dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:id="@+id/infos"
+        android:visibility="gone"
+        android:layout_below="@+id/problem"
+        android:padding="5dp"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentEnd="false">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/infos_img"
+            android:src="@android:drawable/ic_menu_info_details"
+            android:layout_marginLeft="28dp"
+            android:layout_marginStart="28dp"
+            android:background="#fff"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Commentaires"
+            android:id="@+id/infos_title"
+            android:layout_marginLeft="23dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/infos_img"
+            android:layout_toEndOf="@+id/infos_img"
+            android:layout_marginBottom="7dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tous c&apos;est bien passé"
+            android:id="@+id/comment_text"
+            android:textAlignment="textStart"
+            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/infos_title"
+            android:layout_alignStart="@+id/infos_title"
+            android:layout_below="@+id/infos_title" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="2h 30m"
+            android:id="@+id/spend_time_text"
+            android:textAlignment="textStart"
+            android:gravity="center_vertical"
+            android:layout_alignLeft="@+id/infos_title"
+            android:layout_below="@+id/comment_text" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/Button"
+        android:layout_below="@+id/infos"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentBottom="true"
+        android:visibility="visible">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Terminer"
+            android:id="@+id/edit_task"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorAccent"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentStart="false" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

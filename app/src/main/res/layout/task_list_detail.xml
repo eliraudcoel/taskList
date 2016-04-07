@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sectionTitle"
+        android:background="#dcdcdc"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Aujourd&apos;hui"
+            android:id="@+id/section_title"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:visibility="visible"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="10dp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/detail"
+        android:layout_below="@+id/sectionTitle"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/terminated"
+            android:src="@android:drawable/checkbox_off_background"
+            android:layout_alignTop="@+id/task_contact"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="false"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15/05/2016 15:34"
+            android:id="@+id/task_date_list"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentEnd="false"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="30dp"
+            android:layout_alignTop="@+id/task_contact"
+            android:layout_above="@+id/task_contact"
+            android:layout_alignBottom="@+id/task_machine"
+            android:layout_toLeftOf="@+id/detail_btn"
+            android:textAlignment="center"
+            android:textSize="12dp" />
+
+        <TextView
+            android:layout_width="35dp"
+            android:layout_height="45dp"
+            android:text=">"
+            android:id="@+id/detail_btn"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="false"
+            android:textAlignment="center"
+            android:textSize="25dp"
+            android:textIsSelectable="false"
+            android:gravity="center_vertical"
+            android:layout_alignParentTop="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Madame Toto"
+            android:id="@+id/task_contact"
+            android:layout_marginLeft="25dp"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/terminated"
+            android:layout_toEndOf="@+id/terminated" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bosh"
+            android:id="@+id/task_machine"
+            android:layout_alignLeft="@+id/task_contact"
+            android:layout_alignStart="@+id/task_contact"
+            android:layout_below="@+id/task_contact"
+            android:layout_marginTop="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3:00"
+            android:id="@+id/task_time"
+            android:visibility="visible"
+            android:layout_alignStart="@+id/terminated"
+            android:layout_alignBottom="@+id/task_machine" />
+    </RelativeLayout>
+
+</RelativeLayout>
