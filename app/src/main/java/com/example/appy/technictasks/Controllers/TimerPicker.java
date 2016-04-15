@@ -7,9 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.CalendarView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.example.appy.technictasks.R;
 
@@ -31,10 +29,10 @@ public class TimerPicker extends AppCompatActivity {
         time_picker = (TimePicker) findViewById(R.id.timePicker);
         time_picker.setIs24HourView(true);
         time_picker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
-             @Override
-             public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
-                 time_str = hourOfDay + ":" + minute;
-             }
+            @Override
+            public void onTimeChanged(TimePicker view, int hourOfDay, int minute) {
+                time_str = hourOfDay + ":" + minute;
+            }
         });
 
 
