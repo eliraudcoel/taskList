@@ -13,6 +13,8 @@ import com.example.appy.technictasks.BDD.DB;
 import com.example.appy.technictasks.Models.Task;
 import com.example.appy.technictasks.R;
 
+import java.util.ArrayList;
+
 /**
  * Created by Emmanuelle on 27/03/2016.
  */
@@ -22,6 +24,7 @@ public class EditTask extends AppCompatActivity {
     TextView spendTime, comment, dateNewRdv, descriptionNewRdv;
     RelativeLayout newTask;
     CheckBox terminated, newRdv;
+    ArrayList<String> editStrings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,17 @@ public class EditTask extends AppCompatActivity {
             }
         });
 
+        dateNewRdv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent calendarIntent = new Intent(EditTask.this, CalendarPicker.class);
+                setStrings();
+                calendarIntent.putExtra("edits", editStrings);
+                calendarIntent.putExtra("task_id", task.getId());
+                startActivity(calendarIntent);
+            }
+        });
+
 
         // button
         Button validButton = (Button) findViewById(R.id.valid_btn);
@@ -82,6 +96,37 @@ public class EditTask extends AppCompatActivity {
                 startActivity(taskIntent);
             }
         });
+
+        /*
+        ArrayList<String> edits_data = getIntent().getStringArrayListExtra("edits");
+        if (edits_data != null) {
+            fillIn(edits_data);
+        }
+        */
+
+        String new_date = getIntent().getStringExtra("date");
+        String new_time = getIntent().getStringExtra("time");
+
+        if (new_date != null && new_time != null) {
+            dateNewRdv.setText(new_date + " "+ new_time);
+        }
+    }
+
+    private void fillIn(ArrayList<String> data) {
+        spendTime.setText(data.get(0));
+        comment.setText(data.get(1));
+        terminated.setChecked(Boolean.parseBoolean(data.get(2)));
+        newRdv.setChecked(Boolean.parseBoolean(data.get(2)));
+        descriptionNewRdv.setText(data.get(3));
+    }
+
+    private void setStrings() {
+        editStrings = new ArrayList<>();
+        editStrings.add(spendTime.getText().toString());
+        editStrings.add(comment.getText().toString());
+        editStrings.add(""+terminated.isChecked());
+        editStrings.add(""+newRdv.isChecked());
+        editStrings.add(descriptionNewRdv.getText().toString());
     }
 
     private void removeInformation() {

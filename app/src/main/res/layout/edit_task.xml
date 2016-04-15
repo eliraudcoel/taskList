@@ -67,24 +67,18 @@
             android:id="@+id/NewTask"
             android:visibility="visible">
 
-            <EditText
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="datetime"
+                android:inputType="text|datetime"
                 android:ems="10"
                 android:id="@+id/date_new_rdv"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:hint="Date prochain RDV" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/time_new_rdv"
-                android:layout_toRightOf="@+id/date_new_rdv"
+                android:hint="Date prochain RDV"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:hint="Heure RDV" />
+                android:textSize="19dp" />
 
             <EditText
                 android:layout_width="wrap_content"
@@ -103,14 +97,14 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Button"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="false"
         android:layout_alignParentBottom="true"
         android:visibility="visible"
-        android:layout_alignParentTop="true">
+        android:layout_below="@+id/FormTask">
 
         <Button
             android:layout_width="match_parent"
