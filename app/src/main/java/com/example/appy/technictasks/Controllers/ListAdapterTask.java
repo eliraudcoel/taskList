@@ -103,7 +103,6 @@ public class ListAdapterTask extends BaseAdapter {
         }
 
         if(Boolean.parseBoolean(task.getTerminated())) {
-            // convertView.setBackgroundColor(Color.parseColor("#B4E6B2"));
             terminated.setImageResource(android.R.drawable.checkbox_on_background);
             lp.setMargins(10, 10, 10, 10);
 
@@ -112,7 +111,6 @@ public class ListAdapterTask extends BaseAdapter {
                 time.setVisibility(View.VISIBLE);
             }
         } else {
-            // convertView.setBackgroundColor(Color.parseColor("#F4B6B6"));
             terminated.setImageResource(android.R.drawable.checkbox_off_background);
             lp.setMargins(20, 25, 0, 0);
             terminated.setLayoutParams(lp);

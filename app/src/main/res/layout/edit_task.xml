@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/new_rdv"
             android:id="@+id/NewTask"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"

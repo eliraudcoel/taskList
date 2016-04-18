@@ -83,27 +83,26 @@ public class EditTask extends AppCompatActivity {
 
                 DB base = new DB(getBaseContext());
                 base.open();
-
                 base.updateTask(task.getId(), task);
-
-                if(newRdv.isChecked()) {
-                    base.insertTask(createNewTask());
-                }
-
                 base.close();
 
+
+                if(newRdv.isChecked()) {
+                    base.open();
+                    base.insertTask(createNewTask());
+                    base.close();
+                }
+
                 Intent taskIntent = new Intent(EditTask.this, ListTasks.class);
-                taskIntent.putExtra("current_user_id", getIntent().getIntExtra("current_user_id", 0));
+                taskIntent.putExtra("current_user_id", task.getUser().getId());
                 startActivity(taskIntent);
             }
         });
 
-        /*
         ArrayList<String> edits_data = getIntent().getStringArrayListExtra("edits");
         if (edits_data != null) {
             fillIn(edits_data);
         }
-        */
 
         String new_date = getIntent().getStringExtra("date");
         String new_time = getIntent().getStringExtra("time");
@@ -117,8 +116,11 @@ public class EditTask extends AppCompatActivity {
         spendTime.setText(data.get(0));
         comment.setText(data.get(1));
         terminated.setChecked(Boolean.parseBoolean(data.get(2)));
-        newRdv.setChecked(Boolean.parseBoolean(data.get(2)));
-        descriptionNewRdv.setText(data.get(3));
+        newRdv.setChecked(Boolean.parseBoolean(data.get(3)));
+        if (Boolean.parseBoolean(data.get(3))) {
+            newTask.setVisibility(View.VISIBLE);
+        }
+        descriptionNewRdv.setText(data.get(4));
     }
 
     private void setStrings() {

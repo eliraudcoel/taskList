@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.example.appy.technictasks.BDD.DB;
 import com.example.appy.technictasks.R;
 
+import java.util.Date;
+
 /**
  * Created by emma on 11/04/2016.
  */
@@ -30,11 +32,24 @@ public class CalendarPicker extends AppCompatActivity {
         setContentView(R.layout.calendar_picker);
 
         calendar = (CalendarView) findViewById(R.id.calendarPick);
+        calendar.setMinDate(new Date().getTime());
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
-                // Toast.makeText(getApplicationContext(), day + "/" + month + "/" + year, Toast.LENGTH_LONG).show();
-                date = year +"-"+ month + "-" + day;
+                date = "" + year;
+                int real_month = month + 1;
+
+                if (real_month < 10) {
+                    date += "-0" + real_month;
+                } else {
+                    date += "-" + real_month;
+                }
+
+                if (day < 10) {
+                    date += "-0" + day;
+                } else {
+                    date += "-" + day;
+                }
             }
         });
 

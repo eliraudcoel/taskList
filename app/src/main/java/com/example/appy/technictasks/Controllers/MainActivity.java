@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
         if(getCurrentToken() != null) {
             user = base.getUserByToken(getCurrentToken());
         } else {
-            user = base.getUserByLogin(login.getText().toString(), pwd.getText().toString());
+            user = base.getUserByLogin(login.getText().toString().trim(), pwd.getText().toString());
         }
 
         base.close();
