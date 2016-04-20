@@ -74,6 +74,13 @@ public class SQLite extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE USER");
         db.execSQL("DROP TABLE CONTACT");
         onCreate(db);
+
+        // normalement : update le n° de version de la BDD => VERSION_BDD dans fichier DB.java
+        /*
+        if(oldVersion == 1) { // SI mon ancienne version ....
+            db.execSQL(CREATE_BDD_CONTACT); // ajouter la nouvelle table pour les anciennes version de BDD
+        }
+        */
     }
 
 }

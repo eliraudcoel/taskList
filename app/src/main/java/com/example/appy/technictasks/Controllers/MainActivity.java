@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         pref = getSharedPreferences("session", Activity.MODE_PRIVATE);
 
+        // If current_session (token in sharedpreference)
         if(getCurrentToken() != null) {
             current_user = getCurrentUser();
             if (current_user != null) { goToList(); }
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void logIn() {
-        if(getCurrentToken() != null) { removeToken(); } // avant tout on degomme le token stocké
+        if(getCurrentToken() != null) { removeToken(); } // Remove stocked token
 
         if (checkIdentifiant() == true) {
             goToList();

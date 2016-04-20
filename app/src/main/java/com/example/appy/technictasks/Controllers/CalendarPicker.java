@@ -5,15 +5,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.CalendarView;
-import android.widget.TimePicker;
-import android.widget.Toast;
 
-import com.example.appy.technictasks.BDD.DB;
 import com.example.appy.technictasks.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -27,18 +24,23 @@ public class CalendarPicker extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //sets the main layout of the activity
         setContentView(R.layout.calendar_picker);
 
         calendar = (CalendarView) findViewById(R.id.calendarPick);
-        calendar.setMinDate(new Date().getTime());
+        calendar.setMinDate(new Date().getTime()); // set min date of Today
+
+        // set by default current date
+        SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd");
+        date = date_format.format(new Date());
+
+        // On change => store date
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
                 date = "" + year;
                 int real_month = month + 1;
 
+                // Fix when < 10 => no match with 0
                 if (real_month < 10) {
                     date += "-0" + real_month;
                 } else {

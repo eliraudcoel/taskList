@@ -71,7 +71,6 @@ public class TaskDetail extends FragmentActivity implements OnMapReadyCallback {
         time_spend_text.setText(task.getTime_spend());
 
         // Change color of imageViews
-        // int orange_color = Color.parseColor("#FF9E13");
         int red_color = Color.parseColor("#DD4B39");
         call_btn.setColorFilter(red_color);
         date_img.setColorFilter(red_color);
@@ -103,9 +102,6 @@ public class TaskDetail extends FragmentActivity implements OnMapReadyCallback {
         edit_task.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Chrono Page => not working
-                // Intent chronoIntent = new Intent(TaskDetail.this, ChronometerTask.class);
-
                 Intent chronoIntent = new Intent(TaskDetail.this, EditTask.class);
                 chronoIntent.putExtra("current_user_id", getIntent().getIntExtra("current_user_id", 0));
                 chronoIntent.putExtra("task_id", task.getId());
@@ -117,7 +113,6 @@ public class TaskDetail extends FragmentActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        // voir avec l'addresse
 
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         List<Address> addresses = null;

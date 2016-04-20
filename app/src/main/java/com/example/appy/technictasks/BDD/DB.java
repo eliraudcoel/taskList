@@ -17,6 +17,7 @@ import java.util.ArrayList;
  */
 public class DB {
 
+    /** VARIABLES **/
     private static final int VERSION_BDD = 1;
     private static final String NOM_BDD = "tasks.db";
     private Context context;
@@ -25,6 +26,7 @@ public class DB {
 
     private SQLite maBaseSQLite;
 
+    /** GLOBAL METHODS **/
     public DB(Context context){
         maBaseSQLite = new SQLite(context, NOM_BDD, null, VERSION_BDD);
         this.context = context;
@@ -41,6 +43,8 @@ public class DB {
     public SQLiteDatabase getBDD(){
         return bdd;
     }
+
+    /** USER **/
 
     public User getUserByLogin(String login, String mdp){
         Cursor c = bdd.query("USER", new String[] {"ID_USER", "LOGIN", "MDP", "EMAIL", "TOKEN"}, " LOGIN ='"+login+"' AND MDP = '"+mdp+"'", null, null, null, null);
@@ -69,6 +73,14 @@ public class DB {
         }
     }
 
+    public int updateUser(int id, User user){
+        ContentValues values = new ContentValues();
+        values.put("TOKEN", user.getToken());
+        return bdd.update("USER", values, "ID_USER = " + id, null);
+    }
+
+    /** CONSTUMER **/
+
     public Customer getConstumerById(Integer id){
         Cursor c = bdd.query("CUSTOMER", new String[] {"ID_CUSTOMER", "CONTACT_ID" }, " ID_CUSTOMER =" + id, null, null, null, null);
         if(c.getCount() > 0){
@@ -78,6 +90,8 @@ public class DB {
         }
     }
 
+    /** CONTACT **/
+
     public Contact getContactById(Integer id){
         Cursor c = bdd.query("CONTACT", new String[] {"ID_CONTACT", "FIRST_NAME", "LAST_NAME", "ADRESS", "POSTCODE", "CITY", "PHONE_NUMBER"}, "ID_CONTACT =" + id, null, null, null, null);
         if(c.getCount() > 0){
@@ -86,6 +100,8 @@ public class DB {
             return null;
         }
     }
+
+    /** TASK **/
 
     public Task getTaskById(Integer id){
         Cursor c = bdd.query("TASK", new String[] {"ID_TASK", "USER_ID", "CUSTOMER_ID", "MACHINE_TYPE", "MACHINE_BRAND",
@@ -137,11 +153,7 @@ public class DB {
         return bdd.insert("TASK", null, values);
     }
 
-    public int updateUser(int id, User user){
-        ContentValues values = new ContentValues();
-        values.put("TOKEN", user.getToken());
-        return bdd.update("USER", values, "ID_USER = " + id, null);
-    }
+    /** CURSORS **/
 
     private User cursorToUser(Cursor c,int position){
         if (c.getCount() == 0)
@@ -219,27 +231,9 @@ public class DB {
         return contact;
     }
 
-    /*
-    public long insertUser (User user){
-        ContentValues values = new ContentValues();
-        values.put("LOGIN", user.getLogin());
-        values.put("EMAIL", user.getEmail());
-        values.put("MDP", user.getPassword());
-        return bdd.insert("USER", null, values);
-    }
-    */
-
-    /***** UPDATES
-    public int updatePlat(int id, Plat plat){
-        ContentValues values = new ContentValues();
-        values.put("NOM_PLAT", plat.getNom_plat());
-        return bdd.update("PLAT", values, "ID_PLAT = " + id, null);
-    }
-    *****/
-
-    /***** REMOVE BY ID
-    public int removePlatWithID(int id){
-        return bdd.delete("PLAT", "ID_PLAT = " +id, null);
-    }
+    /***** EXMAPLE DE REMOVE
+     * public int removeUserWithID(int id){
+     *  return bdd.delete("USER", "ID_USER = " +id, null);
+     * }
     *****/
 }

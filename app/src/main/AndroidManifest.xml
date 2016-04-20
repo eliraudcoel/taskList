@@ -24,13 +24,10 @@
         </activity>
         <activity android:name=".Controllers.ListTasks" />
         <activity android:name=".Controllers.TaskDetail" />
-        <activity android:name=".Controllers.ChronometerTask"></activity>
         <activity android:name=".Controllers.EditTask"></activity>
         <activity android:name=".Controllers.CalendarPicker"></activity>
         <activity android:name=".Controllers.TimerPicker"></activity>
 
-        <service android:name=".Controllers.ChronometerService" >
-        </service>
     </application>
 
 </manifest>
